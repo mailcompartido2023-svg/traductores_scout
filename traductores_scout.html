@@ -165,7 +165,7 @@
 <div class="main-container">
     <div class="mode-selector">
         <button class="mode-btn active" id="btnMorseMode" onclick="switchMode('morse')">Código MORSE</button>
-        <button class="mode-btn" id="btnSemaforoMode" onclick="switchMode('semaforo')">Semáfora</button>
+        <button class="mode-btn" id="btnsemaforaMode" onclick="switchMode('semafora')">Semáfora</button>
     </div>
 
     <div id="morseControls">
@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <div id="semaforoControls" class="hidden">
+    <div id="semaforaControls" class="hidden">
         <div class="tool-header">
             <h1>SISTEMA <span style="font-weight: 300;">SEMÁFORA</span></h1>
             <div class="perspective-toggle">
@@ -222,8 +222,8 @@
     function switchMode(mode) {
         currentMode = mode;
         document.getElementById('btnMorseMode').classList.toggle('active', mode === 'morse');
-        document.getElementById('btnSemaforoMode').classList.toggle('active', mode === 'semaforo');
-        document.getElementById('semaforoControls').classList.toggle('hidden', mode !== 'semaforo');
+        document.getElementById('btnsemaforaMode').classList.toggle('active', mode === 'semafora');
+        document.getElementById('semaforaControls').classList.toggle('hidden', mode !== 'semafora');
         document.getElementById('morseControls').classList.toggle('hidden', mode !== 'morse');
         render();
     }
@@ -241,12 +241,12 @@
         output.innerHTML = '';
 
         text.split('').forEach(char => {
-            if (currentMode === 'semaforo' && semaphoreData[char]) renderSemaforo(char, output);
+            if (currentMode === 'semafora' && semaphoreData[char]) rendersemafora(char, output);
             else if (currentMode === 'morse' && (morseData[char] || char === ' ')) renderMorse(char, output);
         });
     }
 
-    function renderSemaforo(char, container) {
+    function rendersemafora(char, container) {
         if (char === ' ') return;
         const unit = document.createElement('div');
         unit.className = 'char-unit';
